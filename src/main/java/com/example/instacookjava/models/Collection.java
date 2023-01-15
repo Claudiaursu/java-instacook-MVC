@@ -79,4 +79,20 @@ public class Collection {
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+    public int getCollectionId() {
+        return collectionId;
+    }
+
+    public void setCollectionId(int collectionId) {
+        this.collectionId = collectionId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

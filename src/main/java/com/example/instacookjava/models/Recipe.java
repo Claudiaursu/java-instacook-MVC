@@ -113,4 +113,28 @@ public class Recipe {
     public void setReactions(List<User> reactions) {
         this.reactions = reactions;
     }
+
+    public int getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
+    }
+
+    public Collection getCollection() {
+        return collection;
+    }
+
+    public void setCollection(Collection collection) {
+        this.collection = collection;
+    }
+
+    public Kitchen getKitchen() {
+        return kitchen;
+    }
+
+    public void setKitchen(Kitchen kitchen) {
+        this.kitchen = kitchen;
+    }
 }

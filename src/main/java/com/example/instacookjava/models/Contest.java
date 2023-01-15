@@ -90,4 +90,12 @@ public class Contest {
     public void setKitchen(Kitchen kitchen) {
         this.kitchen = kitchen;
     }
+
+    public int getContestId() {
+        return contestId;
+    }
+
+    public void setContestId(int contestId) {
+        this.contestId = contestId;
+    }
 }

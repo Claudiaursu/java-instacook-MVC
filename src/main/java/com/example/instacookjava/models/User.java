@@ -108,4 +108,12 @@ public class User {
     public void setRecipeReactions(List<Recipe> recipeReactions) {
         this.recipeReactions = recipeReactions;
     }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

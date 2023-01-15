@@ -44,4 +44,28 @@ public class Comment {
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
+
+    public int getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
 }

@@ -69,4 +69,12 @@ public class Kitchen {
     public void setContests(List<Contest> contests) {
         this.contests = contests;
     }
+
+    public int getKitchenId() {
+        return kitchenId;
+    }
+
+    public void setKitchenId(int kitchenId) {
+        this.kitchenId = kitchenId;
+    }
 }
