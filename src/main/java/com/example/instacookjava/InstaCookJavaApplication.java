@@ -1,9 +1,8 @@
 package com.example.instacookjava;
 
-import com.example.instacookjava.models.Utilizator;
-import com.example.instacookjava.repositories.ColectieRepository;
-import com.example.instacookjava.repositories.RetetaRepository;
-import com.example.instacookjava.repositories.UtilizatorRepository;
+import com.example.instacookjava.models.Collection;
+import com.example.instacookjava.models.User;
+import com.example.instacookjava.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,11 +12,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class InstaCookJavaApplication implements CommandLineRunner {
 
 	@Autowired
-	private UtilizatorRepository utilizatorRepository;
-//	@Autowired
-//	private ColectieRepository colectieRepository;
-//	@Autowired
-//	private RetetaRepository retetaRepository;
+	private UserRepository userRepository;
+	@Autowired
+	private CollectionRepository collectionRepository;
+	@Autowired
+	private RecipeRepository recipeRepository;
+	@Autowired
+	private KitchenRepository kitchenRepository;
+	@Autowired
+	private ContestRepository contestRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(InstaCookJavaApplication.class, args);
@@ -25,10 +30,16 @@ public class InstaCookJavaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Utilizator u1 = new Utilizator("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240", 0);
-		Utilizator u2 = new Utilizator("Popescu", "Ana", "popescu.ana@yahoo.com", "Romania", "0737a26241", 0);
+		User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+		User u2 = new User("Popescu", "Ana", "popescu.ana@yahoo.com", "Romania", "0737a26241");
 
-		utilizatorRepository.save(u1);
-		utilizatorRepository.save(u2);
+		userRepository.save(u1);
+		userRepository.save(u2);
+
+		Collection col1 = new Collection("My Deserts", "This is how I do my deserts", false, "");
+		Collection col2 = new Collection("Fast foods in my style", "A few fast burgers and shaorma ideas", false, "");
+		collectionRepository.save(col1);
+		collectionRepository.save(col2);
+
 	}
 }
