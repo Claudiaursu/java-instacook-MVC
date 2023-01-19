@@ -1,12 +1,13 @@
 package com.example.instacookjava;
 
-import com.example.instacookjava.models.Collection;
-import com.example.instacookjava.models.User;
+import com.example.instacookjava.models.*;
 import com.example.instacookjava.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.sql.Date;
 
 @SpringBootApplication
 public class InstaCookJavaApplication implements CommandLineRunner {
@@ -41,5 +42,17 @@ public class InstaCookJavaApplication implements CommandLineRunner {
 		collectionRepository.save(col1);
 		collectionRepository.save(col2);
 
+		Recipe recipe1 = new Recipe("Tiramisu", "mascarpone, cafea, piscoturi, ou", "Se face crema de mascarpone cu oul. Se dau piscoturile prin cafea si se construieste prajitura", "", "", false);
+		recipe1.setCollection(col1);
+		recipeRepository.save(recipe1);
+
+		Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+		kitchenRepository.save(kitchen);
+
+		Comment comment = new Comment("What a good recipe", new Date(2022, 2, 3));
+		commentRepository.save(comment);
+
+		Contest contest = new Contest("Best Deserts", new Date(2022, 3, 2), new Date(2022, 3, 6), true, 100);
+		contestRepository.save(contest);
 	}
 }

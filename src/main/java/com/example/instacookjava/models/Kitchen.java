@@ -1,4 +1,6 @@
 package com.example.instacookjava.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +27,11 @@ public class Kitchen {
     private String region;
 
     @OneToMany(mappedBy = "kitchen")
+    @JsonIgnore
     private List<Recipe> recipes = new ArrayList<>();
 
     @OneToMany(mappedBy = "kitchen")
+    @JsonIgnore
     private List<Contest> contests = new ArrayList<>();
 
     public String getKitchenName() {

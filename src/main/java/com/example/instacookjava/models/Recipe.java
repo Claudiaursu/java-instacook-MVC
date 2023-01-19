@@ -1,4 +1,6 @@
 package com.example.instacookjava.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +44,13 @@ public class Recipe {
     private Kitchen kitchen;
 
     @OneToMany(mappedBy = "recipe")
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name="user_recipe_reaction", joinColumns = @JoinColumn(name = "recipe_id"),
+    @JoinTable(name="user_recipe", joinColumns = @JoinColumn(name = "recipe_id"),
     inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JsonIgnore
     private List<User> reactions = new ArrayList<>();
 
 

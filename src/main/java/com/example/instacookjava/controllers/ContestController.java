@@ -3,14 +3,9 @@ import java.util.*;
 
 import com.example.instacookjava.models.Contest;
 import com.example.instacookjava.services.ContestService;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/contests")
@@ -23,23 +18,23 @@ public class ContestController {
     }
 
     @GetMapping
-    public List<Contest> getAllContests() {
-        return contestService.getAllContests();
+    public ResponseEntity<List<Contest>> getAllContests() {
+        return ResponseEntity.ok().body(contestService.getAllContests());
     }
 
     @PostMapping
-    public Contest createContest(@RequestBody Contest contest) {
-        return contestService.createContest(contest);
+    public ResponseEntity<Contest> createContest(@RequestBody Contest contest,  @RequestParam int kitchenId) {
+        return ResponseEntity.ok().body(contestService.createContest(contest, kitchenId));
     }
 
     @GetMapping("/{id}")
-    public Contest getContestById(@PathVariable("id") Integer id) {
-        return contestService.getContestById(id);
+    public ResponseEntity<Contest> getContestById(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok().body(contestService.getContestById(id));
     }
 
     @PutMapping("/{id}")
-    public Contest updateContest(@PathVariable("id") Integer id, @RequestBody Contest contest) {
-        return contestService.updateContest(id, contest);
+    public ResponseEntity<Contest> updateContest(@PathVariable("id") Integer id, @RequestBody Contest contest) {
+        return ResponseEntity.ok().body(contestService.updateContest(id, contest));
     }
 
     @DeleteMapping("/{id}")

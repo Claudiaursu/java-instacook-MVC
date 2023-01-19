@@ -1,14 +1,9 @@
 package com.example.instacookjava.controllers;
 import com.example.instacookjava.models.Collection;
 import com.example.instacookjava.services.CollectionService;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.*;
 
 @RestController
@@ -22,23 +17,23 @@ public class CollectionController {
     }
 
     @GetMapping
-    public List<Collection> getAllCollections() {
-        return collectionService.getAllCollections();
+    public ResponseEntity<List<Collection>> getAllCollections() {
+        return ResponseEntity.ok().body(collectionService.getAllCollections());
     }
 
     @PostMapping
-    public Collection createCollection(@RequestBody Collection collection) {
-        return collectionService.createCollection(collection);
+    public ResponseEntity<Collection> createCollection(@RequestBody Collection collection, @RequestParam int userId) {
+        return ResponseEntity.ok().body(collectionService.createCollection(collection, userId));
     }
 
     @GetMapping("/{id}")
-    public Collection getCollectionById(@PathVariable("id") Integer id) {
-        return collectionService.getCollectionById(id);
+    public ResponseEntity<Collection> getCollectionById(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok().body(collectionService.getCollectionById(id));
     }
 
     @PutMapping("/{id}")
-    public Collection updateCollection(@PathVariable("id") Integer id, @RequestBody Collection collection) {
-        return collectionService.updateCollection(id, collection);
+    public ResponseEntity<Collection> updateCollection(@PathVariable("id") Integer id, @RequestBody Collection collection) {
+        return ResponseEntity.ok().body(collectionService.updateCollection(id, collection));
     }
 
     @DeleteMapping("/{id}")

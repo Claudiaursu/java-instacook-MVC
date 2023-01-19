@@ -1,15 +1,11 @@
 package com.example.instacookjava.controllers;
 import java.util.*;
+
+import com.example.instacookjava.models.Comment;
 import com.example.instacookjava.models.Recipe;
 import com.example.instacookjava.services.RecipeService;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/recipes")
@@ -27,8 +23,13 @@ public class RecipeController {
     }
 
     @PostMapping
-    public Recipe createRecipe(@RequestBody Recipe recipe) {
-        return recipeService.createRecipe(recipe);
+    public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe,  @RequestParam int collectionId) {
+        return ResponseEntity.ok().body(recipeService.createRecipe(recipe, collectionId));
+    }
+
+    @PostMapping("/kitchen")
+    public ResponseEntity<Recipe> createRecipeInKitchen(@RequestBody Recipe recipe,  @RequestParam int collectionId,  @RequestParam int kitchenId) {
+        return ResponseEntity.ok().body(recipeService.createRecipeInKitchen(recipe, collectionId, kitchenId));
     }
 
     @GetMapping("/{id}")
@@ -37,12 +38,17 @@ public class RecipeController {
     }
 
     @PutMapping("/{id}")
-    public Recipe updateRecipe(@PathVariable("id") Integer id, @RequestBody Recipe recipe) {
-        return recipeService.updateRecipe(id, recipe);
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") Integer id, @RequestBody Recipe recipe) {
+        return ResponseEntity.ok().body(recipeService.updateRecipe(id, recipe));
     }
 
     @DeleteMapping("/{id}")
     public void deleteRecipe(@PathVariable("id") Integer id) {
         recipeService.deleteRecipe(id);
+    }
+
+    @GetMapping("/{recipeId}/comments")
+    public ResponseEntity<List<Comment>> getAllComments(@PathVariable("recipeId") Integer recipeId) {
+        return ResponseEntity.ok().body(recipeService.getAllCommentsForRecipe(recipeId));
     }
 }

@@ -1,5 +1,7 @@
 package com.example.instacookjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class Collection {
     private User user;
 
     @OneToMany(mappedBy = "collection")
+    @JsonIgnore
     private List<Recipe> recipes = new ArrayList<>();
 
     public String getCollectionTitle() {
@@ -64,11 +67,11 @@ public class Collection {
         this.photoPath = photoPath;
     }
 
-    public User getUtilizator() {
+    public User getUser() {
         return user;
     }
 
-    public void setUtilizator(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -86,13 +89,5 @@ public class Collection {
 
     public void setCollectionId(int collectionId) {
         this.collectionId = collectionId;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.instacookjava.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +31,15 @@ public class User {
     private Integer totalPoints;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Collection> collections = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     @ManyToMany(mappedBy = "reactions")
+    @JsonIgnore
     private List<Recipe> recipeReactions = new ArrayList<>();
 
     public String getFirstName() {
