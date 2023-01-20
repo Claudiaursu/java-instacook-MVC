@@ -50,8 +50,36 @@ Utilizatorii isi pot face vizibile propriile retete, pe care le pot organiza asa
 
 ### Metode expuse:
 
-**GET /users** <br/>
-**POST /users** <br/>
-**PUT /users/{userId}** <br/>
-**DELETE /users/{userId}** <br/>
-**POST /users/{userId}/reactions?recipeId=<recipeId>** <br />
+**GET /users**: listarea tuturor utilizatorilor<br/>
+**POST /users**: adaugarea unui nou utilizator, trimitand un body cu detaliile acestuia<br/>
+**PUT /users/{userId}**: actualizarea unui utilizator cu id-ul userId <br/>
+**DELETE /users/{userId}**: stergerea unui utilizator cu id-ul userId <br/>
+**POST /users/{userId}/reactions?recipeId={id}**: adaugarea unei reactii a utiliatorului cu id-ul userId pentru reteta cu id-ul specificat<br/>
+<br/>
+**GET /collections**: listarea tuturor colectiilor
+**POST /collections**: adaugarea unei noi colectii, trimitand un body cu detaliile acesteia<br/>
+**PUT /collections/{collectionId}**: actualizarea unei colectii cu id-ul collectionId <br/>
+**DELETE /collections/{collectionId}**: stergerea unei colectii cu id-ul collectionId <br/>
+<br/>
+**GET /recipes**: listarea tuturor retetelor
+**GET /recipes/{recipeId}/comments**: afisarea tuturor comentariilor unei retete cu id-ul recipeId
+**POST /recipes?collectionId={collectionId}**: adaugarea unei noi retete in colectia cu id-ul collectionId, trimitand un body cu detaliile retetei<br/>
+**PUT /recipes/{recipeId}**: actualizarea unei retete cu id-ul recipeId <br/>
+**POST /recipes/kitchen?collectionId={collectionId}&kitchenId={kitchenId}**: adaugarea unei retete noi in colectia cu id-ul collectionId si in bucataria cu id-ul kitchenId <br/>
+**DELETE /recipes/{recipeId}**: stergerea unei retete cu id-ul recipeId <br/>
+<br/>
+**GET /kitchens**: listarea tuturor bucatariilor <br/>
+**POST /kitchens**: adaugarea unei noi bucatarii, trimitand un body cu detaliile acesteia<br/>
+**PUT /kitchens/{kitchenId}**: actualizarea unei bucatarii cu id-ul kitchenId <br/>
+**DELETE /kitchens/{kitchenId}**: stergerea unei bucatarii cu id-ul kitchenId <br/>
+<br/>
+**GET /contests**: listarea tuturor concursurilor <br/>
+**POST /contests?kitchenId={kitchenId}**: adaugarea unui nou concurs pentru bucataria cu id-ul kitchenId <br/>
+**PUT /contests/{contestId}**: actualizarea unui concurs cu id-ul contestId <br/>
+**DELETE /contests/{contestId}**: stergerea unui concurs cu id-ul contestId <br/>
+<br/>
+**GET /comments**: listarea tuturor comentariilor <br/>
+**POST /comments?userId={userId}&recipeId={recipeId}**: adaugarea unui nou comentariu, trimitand un body cu detaliile acestuia, conectandu-l la utilizatorul cu id-ul userId si la reteta cu id-ul recipeId<br/>
+**PUT /comments/{commentId}**: actualizarea unui comentariu cu id-ul commentId <br/>
+**DELETE /comments/{commentId}**: stergerea unui utilizator cu id-ul commentId <br/>
+
