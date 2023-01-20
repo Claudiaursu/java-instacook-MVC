@@ -1,6 +1,10 @@
 package com.example.instacookjava.models;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
@@ -22,10 +26,13 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
+    @NotNull(message="The comment cannot be empty")
+    @NotEmpty(message="The comment cannot be empty")
+    @Length(max = 100, message = "The comment must be less than 100 characters")
     private String text;
     private Date postDate;
 

@@ -2,6 +2,8 @@ package com.example.instacookjava.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +25,16 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int recipeId;
 
+    @NotNull(message="Recipe title cannot be empty")
+    @NotEmpty
     private String recipeTitle;
 
+    @NotNull(message="You must define the ingredients")
+    @NotEmpty(message="You must define the ingredients")
     private String ingredients;
 
+    @NotNull(message="You must define instructions")
+    @NotEmpty(message="You must define instructions")
     private String instructions;
 
     private String photoPath;
@@ -43,7 +51,7 @@ public class Recipe {
     @JoinColumn(name = "kitchen_id")
     private Kitchen kitchen;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe", cascade=CascadeType.REMOVE)
     @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 

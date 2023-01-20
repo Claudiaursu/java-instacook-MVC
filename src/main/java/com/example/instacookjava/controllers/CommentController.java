@@ -5,6 +5,8 @@ import com.example.instacookjava.services.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/comments")
 public class CommentController {
@@ -21,7 +23,7 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<Comment> createComment(@RequestBody Comment comment, @RequestParam int userId, @RequestParam int recipeId) {
+    public ResponseEntity<Comment> createComment(@RequestBody @Valid Comment comment, @RequestParam int userId, @RequestParam int recipeId) {
         return ResponseEntity.ok().body(commentService.createComment(comment, userId, recipeId));
     }
 

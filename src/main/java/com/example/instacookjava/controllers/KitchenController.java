@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/kitchens")
 public class KitchenController {
@@ -30,7 +32,7 @@ public class KitchenController {
     }
 
     @PostMapping
-    public ResponseEntity<Kitchen> createRKitchen(@RequestBody Kitchen kitchen) {
+    public ResponseEntity<Kitchen> createRKitchen(@RequestBody @Valid Kitchen kitchen) {
         return ResponseEntity.ok().body(kitchenService.createKitchen(kitchen));
     }
 

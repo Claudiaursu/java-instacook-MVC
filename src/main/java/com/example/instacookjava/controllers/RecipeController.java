@@ -7,6 +7,8 @@ import com.example.instacookjava.services.RecipeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/recipes")
 public class RecipeController {
@@ -23,7 +25,7 @@ public class RecipeController {
     }
 
     @PostMapping
-    public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe,  @RequestParam int collectionId) {
+    public ResponseEntity<Recipe> createRecipe(@RequestBody @Valid Recipe recipe, @RequestParam int collectionId) {
         return ResponseEntity.ok().body(recipeService.createRecipe(recipe, collectionId));
     }
 

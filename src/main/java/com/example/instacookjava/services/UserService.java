@@ -15,6 +15,7 @@ public class UserService {
     }
 
     public User saveNewUser(User user){
+        user.setTotalPoints(0);
         return userRepository.save(user);
     }
 

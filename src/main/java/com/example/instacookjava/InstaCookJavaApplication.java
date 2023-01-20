@@ -39,6 +39,8 @@ public class InstaCookJavaApplication implements CommandLineRunner {
 
 		Collection col1 = new Collection("My Deserts", "This is how I do my deserts", false, "");
 		Collection col2 = new Collection("Fast foods in my style", "A few fast burgers and shaorma ideas", false, "");
+		col1.setUser(u1);
+		col2.setUser(u2);
 		collectionRepository.save(col1);
 		collectionRepository.save(col2);
 
@@ -50,6 +52,8 @@ public class InstaCookJavaApplication implements CommandLineRunner {
 		kitchenRepository.save(kitchen);
 
 		Comment comment = new Comment("What a good recipe", new Date(2022, 2, 3));
+		comment.setRecipe(recipe1);
+		comment.setUser(u1);
 		commentRepository.save(comment);
 
 		Contest contest = new Contest("Best Deserts", new Date(2022, 3, 2), new Date(2022, 3, 6), true, 100);

@@ -3,6 +3,8 @@ package com.example.instacookjava.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class Collection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int collectionId;
+    @NotNull(message="Collection title cannot be empty")
+    @NotEmpty(message="Collection title cannot be empty")
     private String collectionTitle;
     private String collectionDescription;
     private boolean isPublic;

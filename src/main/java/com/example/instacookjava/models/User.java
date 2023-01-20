@@ -3,6 +3,9 @@ package com.example.instacookjava.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,18 +26,25 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+    @NotNull(message="First Name cannot be empty")
+    @NotEmpty(message="First Name cannot be empty")
     private String firstName;
+    @NotNull(message="Last Name cannot be empty")
+    @NotEmpty(message="Last Name cannot be empty")
     private String lastName;
+    @NotNull(message="Email cannot be empty")
+    @NotEmpty(message="Email cannot be empty")
+    @Email(message="You should enter a valid email")
     private String email;
     private String country;
     private String phoneNumber;
     private Integer totalPoints;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
     @JsonIgnore
     private List<Collection> collections = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
     @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 

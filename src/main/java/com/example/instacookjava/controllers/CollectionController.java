@@ -4,6 +4,7 @@ import com.example.instacookjava.services.CollectionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @RestController
@@ -22,7 +23,7 @@ public class CollectionController {
     }
 
     @PostMapping
-    public ResponseEntity<Collection> createCollection(@RequestBody Collection collection, @RequestParam int userId) {
+    public ResponseEntity<Collection> createCollection(@RequestBody @Valid Collection collection, @RequestParam int userId) {
         return ResponseEntity.ok().body(collectionService.createCollection(collection, userId));
     }
 

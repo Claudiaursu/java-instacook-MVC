@@ -1,5 +1,6 @@
 package com.example.instacookjava.models;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.sql.Date;
 
 @Entity
@@ -19,14 +20,19 @@ public class Contest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int contestId;
 
+    @NotNull(message="Contest title cannot be empty")
+    @NotEmpty(message="Contest title cannot be empty")
     private String contestTitle;
 
     private Date startDate;
 
+    @FutureOrPresent(message = "Invalid end date, It should be as future or present date")
     private Date endDate;
 
     private boolean isActive;
 
+    @Min(value = 5, message = "Invalid reward, Minimum should be 5")
+    @Max(value = 200, message = "Invalid reward, Maximum allowed is 200")
     private Integer winPoints;
 
     private String winner;

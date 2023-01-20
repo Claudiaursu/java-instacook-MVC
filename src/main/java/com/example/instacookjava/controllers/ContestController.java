@@ -6,6 +6,7 @@ import com.example.instacookjava.services.ContestService;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/contests")
@@ -23,7 +24,7 @@ public class ContestController {
     }
 
     @PostMapping
-    public ResponseEntity<Contest> createContest(@RequestBody Contest contest,  @RequestParam int kitchenId) {
+    public ResponseEntity<Contest> createContest(@RequestBody @Valid Contest contest, @RequestParam int kitchenId) {
         return ResponseEntity.ok().body(contestService.createContest(contest, kitchenId));
     }
 
