@@ -12,6 +12,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
@@ -27,6 +29,26 @@ public class UserServiceTests {
     private UserRepository userRepository;
     @Mock
     private RecipeRepository recipeRepository;
+
+    @Test
+    @DisplayName("Get all users happy flow")
+    void getAllUsers() {
+        //arrange
+        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+        User u2 = new User("Popescu", "Ana", "popescu.ana@yahoo.com", "Romania", "0737a26241");
+
+        List<User> userList = new ArrayList<>();
+        userList.add(u1);
+        userList.add(u2);
+
+        when(userRepository.findAll()).thenReturn(userList);
+
+        //check
+        List<User> result = userService.getAllUsers();
+
+        //assert
+        assertEquals(userList.size(), result.size());
+    }
 
     @Test
     @DisplayName("Saving user in happy flow")
@@ -63,6 +85,20 @@ public class UserServiceTests {
 
         //check
         assertEquals(userId1.getRecipeReactions(), result.getRecipeReactions());
+    }
+
+    @Test
+    void updateUser() {
+        //arrange
+        int userId = 1;
+        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+        when(userRepository.save(u1)).thenReturn(u1);
+
+        //check
+        User result = userService.updateUser(userId, u1);
+
+        //assert
+        assertEquals(result.getUserId(), u1.getUserId());
 
     }
 
