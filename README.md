@@ -48,7 +48,7 @@ Utilizatorii isi pot face vizibile propriile retete, pe care le pot organiza asa
 - O bucatarie poate avea zero sau mai multe concursuri iar un concurs apartine unei singure bucatarii.
 
 #### Diagrama bazei de date:
-![DB Diagram](./diagrama_Java_API.png)
+![DB Diagram](diagrama_JAVA_API.png)
 
 ### Metode expuse:
 
