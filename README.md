@@ -47,6 +47,8 @@ Utilizatorii isi pot face vizibile propriile retete, pe care le pot organiza asa
 - Detine toate concursurile asociate unui anumit tip de bucatarie, asadar contribuie la realizarea relatiei de one-to-many dintre tabelele Kitchen si Contest 
 - O bucatarie poate avea zero sau mai multe concursuri iar un concurs apartine unei singure bucatarii.
 
+#### Diagrama bazei de date:
+![DB Diagram](./diagrama_Java_API.png)
 
 ### Metode expuse:
 
