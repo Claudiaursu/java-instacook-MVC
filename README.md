@@ -56,8 +56,8 @@ Utilizatorii isi pot face vizibile propriile retete, pe care le pot organiza asa
 **DELETE /users/{userId}**: stergerea unui utilizator cu id-ul userId <br/>
 **POST /users/{userId}/reactions?recipeId={id}**: adaugarea unei reactii a utiliatorului cu id-ul userId pentru reteta cu id-ul specificat<br/>
 <br/>
-**GET /collections**: listarea tuturor colectiilor
-**POST /collections**: adaugarea unei noi colectii, trimitand un body cu detaliile acesteia<br/>
+**GET /collections**: listarea tuturor colectiilor <br/>
+**POST /collections?userId={userId}**: adaugarea unei noi colectii, trimitand un body cu detaliile acesteia, pentru utilizatorul cu id-ul userId <br/>
 **PUT /collections/{collectionId}**: actualizarea unei colectii cu id-ul collectionId <br/>
 **DELETE /collections/{collectionId}**: stergerea unei colectii cu id-ul collectionId <br/>
 <br/>
