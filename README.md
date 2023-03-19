@@ -1,7 +1,7 @@
 
-## InstaCook API
-Acest API este realizat in scopul sustinerii unei aplicatii de social media pentru pasionatii de gatit.
-Scopul aplicatiei, si implicit al API-ului, consta in conectarea pasionatilor de gatit de pretutindeni si impartasirea retetelor proprii, intr-o maniera simpla dar competitiva in acelasi timp.
+## InstaCook MVC
+Insta Cook este o aplicatie de social media pentru pasionatii de gatit.
+Scopul aplicatiei consta in conectarea pasionatilor de gatit de pretutindeni si impartasirea retetelor proprii, intr-o maniera simpla dar competitiva in acelasi timp.
 
 ### Descrierea API-ului:
 Utilizatorii isi pot face vizibile propriile retete, pe care le pot organiza asa cum doresc, si pot urmari activitatea culinara a prietenilor lor, putand comenta sau reactiona la retetele acestora. Pentru a motiva utilizatorii sa posteze cat mai multe retete, am adaugat posibilitatea ca acestia sa participe la diverse concursuri tematice (pe un anumit tip de retete, de exemplu: bucataria mexicana, thailandeza, etc) si sa castige puncte daca au reteta cu cele mai multe aprecieri. Va fi disponibil un clasament global “Cei mai buni bucatari”, cu toti utilizatorii aplicatiei, in functie de numarul total de puncte castigate.
