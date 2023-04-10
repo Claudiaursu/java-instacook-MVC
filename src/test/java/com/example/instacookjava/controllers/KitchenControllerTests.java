@@ -23,18 +23,18 @@ public class KitchenControllerTests {
 
     @Test
     public void testCreateKitchen() {
-        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "Photopath");
         kitchen.setKitchenId(1);
         when(kitchenService.createKitchen(kitchen)).thenReturn(kitchen);
 
-        ResponseEntity<Kitchen> response = kitchenController.createRKitchen(kitchen);
+        ResponseEntity<Kitchen> response = kitchenController.createKitchen(kitchen);
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(kitchen, response.getBody());
     }
 
     @Test
     public void testUpdateKitchen() {
-        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "Photopath");
         kitchen.setKitchenId(1);
         when(kitchenService.updateKitchen(1, kitchen)).thenReturn(kitchen);
 

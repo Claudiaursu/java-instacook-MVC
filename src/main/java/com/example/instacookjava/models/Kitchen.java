@@ -12,10 +12,11 @@ public class Kitchen {
     public Kitchen() {
     }
 
-    public Kitchen(String kitchenName, String kitchenDescription, String region) {
+    public Kitchen(String kitchenName, String kitchenDescription, String region, String kitchenPhotoPath) {
         this.kitchenName = kitchenName;
         this.kitchenDescription = kitchenDescription;
         this.region = region;
+        this.kitchenPhotoPath = kitchenPhotoPath;
     }
 
     @Id
@@ -25,6 +26,8 @@ public class Kitchen {
     @NotNull(message="Kitchen Name cannot be empty")
     @NotEmpty(message="Kitchen Name cannot be empty")
     private String kitchenName;
+
+    private String kitchenPhotoPath;
 
     private String kitchenDescription;
 
@@ -78,6 +81,14 @@ public class Kitchen {
 
     public void setContests(List<Contest> contests) {
         this.contests = contests;
+    }
+
+    public String getKitchenPhotoPath() {
+        return kitchenPhotoPath;
+    }
+
+    public void setKitchenPhotoPath(String kitchenPhotoPath) {
+        this.kitchenPhotoPath = kitchenPhotoPath;
     }
 
     public int getKitchenId() {

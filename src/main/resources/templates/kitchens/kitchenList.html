@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitchens</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/font-awesome/6.2.0/css/all.min.css"/>
+    <script src="/webjars/font-awesome/6.2.0/js/all.min.js"></script>
+    <style th:replace="/fragments/menu.html :: style"></style>
+</head>
+<body>
+<div>
+    <div th:replace="/fragments/menu.html :: header"> </div>
+</div>
+
+<div class="container text-center" style="max-width: 1340px">
+    <div class="row d-flex justify-content-center">
+        <div th:each="kitchen : ${kitchens}" class="mx-2 my-2">
+            <div class="card h-100 w-100">
+                <div  class="card w-100 h-75">
+                    <img th:src="@{${kitchen.kitchenPhotoPath}}" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body menu-card text-center">
+                    <h5 class="card-title" th:text="${kitchen.kitchenName}"></h5>
+                    <span class="card-text" th:text="${kitchen.kitchenDescription}"></span><br>
+                    <span class="card-text" th:text="Region  + ': ' +  ${kitchen.region}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
