@@ -105,7 +105,7 @@ class RecipeServiceTests {
         when(collectionRepository.findById(collectionId)).thenReturn(Optional.of(col1));
 
         int kitchenId = 1;
-        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "");
         when(kitchenRepository.findById(kitchenId)).thenReturn(Optional.of(kitchen));
 
         Recipe recipe1 = new Recipe("Tiramisu", "mascarpone, cafea, piscoturi, ou", "Se face crema de mascarpone cu oul. Se dau piscoturile prin cafea si se construieste prajitura", "", "", false);

@@ -36,6 +36,12 @@ public class KitchenController {
         return modelAndView;
     }
 
+    @RequestMapping("/delete/{id}")
+    public String deleteById(@PathVariable Integer id){
+        kitchenService.deleteKitchen(id);
+        return "redirect:/kitchens";
+    }
+
 
 //    @GetMapping
 //    public ResponseEntity<List<Kitchen>> getAllKitchens() {

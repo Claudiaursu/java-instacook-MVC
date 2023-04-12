@@ -73,11 +73,6 @@ public class User {
     @JsonIgnore
     private List<Recipe> recipeReactions = new ArrayList<>();
 
-//    @Singular
-//    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-//    @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
-//            inverseJoinColumns = @JoinColumn(name="authority_id", referencedColumnName = "authorityId"))
-//    private Set<Authority> authorities;
 
     @Singular
     @ManyToMany

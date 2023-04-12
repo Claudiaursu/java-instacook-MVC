@@ -34,8 +34,8 @@ public class UserServiceTests {
     @DisplayName("Get all users happy flow")
     void getAllUsers() {
         //arrange
-        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
-        User u2 = new User("Popescu", "Ana", "popescu.ana@yahoo.com", "Romania", "0737a26241");
+        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "parola", "Romania", "0737526240");
+        User u2 = new User("Popescu", "Ana", "popescu.ana@yahoo.com", "parola", "Romania", "0737a26241");
 
         List<User> userList = new ArrayList<>();
         userList.add(u1);
@@ -54,7 +54,7 @@ public class UserServiceTests {
     @DisplayName("Saving user in happy flow")
     void saveNewUserHappyFlow(){
         //arrange
-        User user = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+        User user = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "parola", "Romania", "0737526240");
         when(userRepository.save(user)).thenReturn(user);
 
         //check
@@ -71,7 +71,7 @@ public class UserServiceTests {
         int userId = 1;
         int recipeId = 2;
 
-        User userId1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+        User userId1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "parola", "Romania", "0737526240");
         Recipe recipeId2 = new Recipe("Tiramisu", "mascarpone, cafea, piscoturi, ou", "Se face crema de mascarpone cu oul. Se dau piscoturile prin cafea si se construieste prajitura", "", "", false);
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(userId1));
@@ -91,7 +91,7 @@ public class UserServiceTests {
     void updateUser() {
         //arrange
         int userId = 1;
-        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "parola", "Romania", "0737526240");
         when(userRepository.save(u1)).thenReturn(u1);
 
         //check

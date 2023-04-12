@@ -61,7 +61,6 @@ public class Recipe {
     @JsonIgnore
     private List<User> reactions = new ArrayList<>();
 
-
     public String getRecipeTitle() {
         return recipeTitle;
     }

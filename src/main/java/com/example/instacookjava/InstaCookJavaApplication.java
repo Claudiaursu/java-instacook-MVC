@@ -73,8 +73,14 @@ public class InstaCookJavaApplication implements CommandLineRunner {
 		u1.setEnabled(true);
 		u1.setAccountNotLocked(true);
 		u1.setCredentialsNotExpired(true);
-
 		u1.setAuthorities( new HashSet<>(Arrays.asList(adminRole)));
+
+		u2.setAccountNotExpired(true);
+		u2.setEnabled(true);
+		u2.setAccountNotLocked(true);
+		u2.setCredentialsNotExpired(true);
+		u2.setAuthorities( new HashSet<>(Arrays.asList(guestRole)));
+
 
 		userRepository.save(u1);
 		userRepository.save(u2);

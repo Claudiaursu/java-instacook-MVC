@@ -1,6 +1,7 @@
 package com.example.instacookjava.services;
 
 import com.example.instacookjava.models.Collection;
+import com.example.instacookjava.models.Recipe;
 import com.example.instacookjava.models.User;
 import com.example.instacookjava.repositories.CollectionRepository;
 import com.example.instacookjava.repositories.UserRepository;
@@ -37,6 +38,11 @@ public class CollectionService {
     public Collection updateCollection(Integer id, Collection collection) {
         collection.setCollectionId(id);
         return collectionRepository.save(collection);
+    }
+
+    public Collection save(Collection collection) {
+        Collection savedCollection = collectionRepository.save(collection);
+        return savedCollection;
     }
 
     public void deleteCollection(Integer id) {

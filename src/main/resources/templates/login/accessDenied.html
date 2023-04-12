@@ -5,7 +5,14 @@
     <title>Login</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style th:replace="/fragments/menu.html :: style"></style>
+
 <body>
-Access denied
+<div clss="text-center cntainer">
+    <div th:replace="/fragments/menu.html :: header"> </div>
+    <span style="color:red">
+        Sorry! You don't have access to this page :(
+    </span>
+</div>
 </body>
 </html>

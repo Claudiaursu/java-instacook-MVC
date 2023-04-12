@@ -16,7 +16,6 @@ public class MainController {
     @GetMapping("/perform_login")
     public String successfulLogin(){ return "/kitchens"; }
 
-
     @RequestMapping({"","/","/auction"})
     public ModelAndView getHome(){
 

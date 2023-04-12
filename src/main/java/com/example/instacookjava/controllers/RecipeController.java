@@ -3,8 +3,12 @@ import java.util.*;
 import com.example.instacookjava.models.Recipe;
 import com.example.instacookjava.services.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller()
 @RequestMapping("/recipes")
@@ -24,39 +28,47 @@ public class RecipeController {
         return modelAndView;
     }
 
+    @GetMapping("/{id}")
+    public String getById(@PathVariable Integer id, Model model){
 
-//    @GetMapping
-//    public List<Recipe> getAllRecipes() {
-//        return recipeService.getAllRecipes();
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<Recipe> createRecipe(@RequestBody @Valid Recipe recipe, @RequestParam int collectionId) {
-//        return ResponseEntity.ok().body(recipeService.createRecipe(recipe, collectionId));
-//    }
-//
-//    @PostMapping("/kitchen")
-//    public ResponseEntity<Recipe> createRecipeInKitchen(@RequestBody Recipe recipe,  @RequestParam int collectionId,  @RequestParam int kitchenId) {
-//        return ResponseEntity.ok().body(recipeService.createRecipeInKitchen(recipe, collectionId, kitchenId));
-//    }
-//
-//    @GetMapping("/{id}")
-//    public Recipe getRecipeById(@PathVariable("id") Integer id) {
-//        return recipeService.getRecipeById(id);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Recipe> updateRecipe(@PathVariable("id") Integer id, @RequestBody Recipe recipe) {
-//        return ResponseEntity.ok().body(recipeService.updateRecipe(id, recipe));
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void deleteRecipe(@PathVariable("id") Integer id) {
-//        recipeService.deleteRecipe(id);
-//    }
-//
-//    @GetMapping("/{recipeId}/comments")
-//    public ResponseEntity<List<Comment>> getAllComments(@PathVariable("recipeId") Integer recipeId) {
-//        return ResponseEntity.ok().body(recipeService.getAllCommentsForRecipe(recipeId));
-//    }
+        Recipe recipe = recipeService.getRecipeById(id);
+        model.addAttribute("recipe",
+                recipe);
+        return "recipes/recipeDetails";
+    }
+    @GetMapping("/new")
+    public String showNewRecipeForm(){ return "recipes/recipeAddForm"; }
+
+    @RequestMapping("/edit/{recipeId}")
+    public String edit(@PathVariable("recipeId") Integer recipeId, Model model) {
+        Recipe recipe = recipeService.getRecipeById(recipeId);
+        model.addAttribute("recipe", recipe);
+        return "recipes/recipeEditForm";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String processRecipeForm(@PathVariable Integer id, @Valid @ModelAttribute Recipe recipe,
+                                    BindingResult bindingResult) {
+        recipeService.updateRecipe(id, recipe);
+        return "redirect:/recipes/";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteById(@PathVariable Integer id){
+        recipeService.deleteRecipe(id);
+        return "redirect:/recipes";
+    }
+
+    @PostMapping("/save")
+    public String saveOrUpdate(@Valid @ModelAttribute Recipe recipe,
+                               BindingResult bindingResult
+    ){
+        if (bindingResult.hasErrors()){
+            return "recipeEditForm";
+        }
+
+        Recipe savedRecipe = recipeService.save(recipe);
+        return "redirect:/recipes" ;
+    }
+
 }

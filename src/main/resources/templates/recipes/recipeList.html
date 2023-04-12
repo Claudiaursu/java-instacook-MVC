@@ -24,7 +24,9 @@
             <th>Instructions</th>
             <th></th>
             <th></th>
-            <th></th>
+            <th style="width:auto">
+                <a class="btn btn-primary btn-sm text-white" type="button" th:href="@{'/recipes/new'}" ><b>+</b></a>
+            </th>
         </tr>
         </thead>
         <tr th:each="recipe, stat : ${recipes}"

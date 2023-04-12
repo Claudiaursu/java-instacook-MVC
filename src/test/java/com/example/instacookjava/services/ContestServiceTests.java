@@ -68,7 +68,7 @@ class ContestServiceTests {
         when(contestRepository.save(contest)).thenReturn(contest);
 
         int kitchenId = 1;
-        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "");
         when(kitchenRepository.findById(kitchenId)).thenReturn(Optional.of(kitchen));
 
         //check

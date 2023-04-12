@@ -72,7 +72,7 @@ class CommentServiceTests {
         when(commentRepository.save(comment)).thenReturn(comment);
 
         int userId = 1;
-        User userId1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+        User userId1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "parola", "Romania", "0737526240");
         int recipeId = 2;
         Recipe recipeId2 = new Recipe("Tiramisu", "mascarpone, cafea, piscoturi, ou", "Se face crema de mascarpone cu oul. Se dau piscoturile prin cafea si se construieste prajitura", "", "", false);
 

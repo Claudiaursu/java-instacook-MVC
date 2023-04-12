@@ -29,8 +29,8 @@ class KitchenServiceTests {
     @DisplayName("Get all kitchens happy flow")
     void getAllRecipes() {
         //arrange
-        Kitchen kitchen1 = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
-        Kitchen kitchen2 = new Kitchen("Thailand Kitchen", "Tacos and Tacos", "Thailand");
+        Kitchen kitchen1 = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "");
+        Kitchen kitchen2 = new Kitchen("Thailand Kitchen", "Tacos and Tacos", "Thailand", "");
 
         List<Kitchen> kitchenList = new ArrayList<>();
         kitchenList.add(kitchen1);
@@ -49,7 +49,7 @@ class KitchenServiceTests {
     void getKitchenByIdHappyFlow() {
         //arrange
         int kitchenId = 1;
-        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "");
         when(kitchenRepository.findById(kitchenId)).thenReturn(Optional.of(kitchen));
 
         //check
@@ -63,7 +63,7 @@ class KitchenServiceTests {
     void createKitchen() {
         //arrange
         int kitchenId = 1;
-        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "");
         when(kitchenRepository.save(kitchen)).thenReturn(kitchen);
 
         //check
@@ -78,7 +78,7 @@ class KitchenServiceTests {
     void updateKitchen() {
         //arrange
         int kitchenId = 1;
-        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic");
+        Kitchen kitchen = new Kitchen("Mexican Kitchen", "Tacos and Tacos", "Mexic", "");
         when(kitchenRepository.save(kitchen)).thenReturn(kitchen);
 
         //check

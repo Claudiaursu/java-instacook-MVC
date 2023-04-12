@@ -66,7 +66,7 @@ class CollectionServiceTests {
     @Test
     void createCollection() {
         //arrange
-        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", "Romania", "0737526240");
+        User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com","parola", "Romania", "0737526240");
         Collection col1 = new Collection("My Deserts", "This is how I do my deserts", false, "");
         when(collectionRepository.save(col1)).thenReturn(col1);
 

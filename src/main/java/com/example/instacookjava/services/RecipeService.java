@@ -61,6 +61,11 @@ public class RecipeService {
         recipeRepository.deleteById(id);
     }
 
+    public Recipe save(Recipe recipe) {
+        Recipe savedRecipe = recipeRepository.save(recipe);
+        return savedRecipe;
+    }
+
     public List<Comment> getAllCommentsForRecipe(int recipeId){
         Recipe recipe= recipeRepository
                 .findById(recipeId)
@@ -68,5 +73,4 @@ public class RecipeService {
         List<Comment> comments = recipe.getComments();
         return comments;
     }
-
 }
