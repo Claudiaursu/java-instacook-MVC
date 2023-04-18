@@ -1,5 +1,7 @@
 package com.example.instacookjava.controllers;
 import java.util.*;
+
+import com.example.instacookjava.exceptionHandling.ResourceNotFoundException;
 import com.example.instacookjava.models.Recipe;
 import com.example.instacookjava.services.RecipeService;
 import org.springframework.stereotype.Controller;
@@ -61,14 +63,21 @@ public class RecipeController {
 
     @PostMapping("/save")
     public String saveOrUpdate(@Valid @ModelAttribute Recipe recipe,
-                               BindingResult bindingResult
-    ){
+                               BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "recipeEditForm";
         }
 
         Recipe savedRecipe = recipeService.save(recipe);
         return "redirect:/recipes" ;
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ModelAndView handlerNotFoundException(Exception exception){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModel().put("exception",exception);
+        modelAndView.setViewName("fragments/notFound");
+        return modelAndView;
     }
 
 }

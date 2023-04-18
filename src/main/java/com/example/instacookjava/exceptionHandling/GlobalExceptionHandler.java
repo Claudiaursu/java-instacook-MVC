@@ -1,9 +1,12 @@
 package com.example.instacookjava.exceptionHandling;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
@@ -15,14 +18,14 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-//    @ExceptionHandler({NoSufficientQuantityException.class, NoProductFoundException.class})
-//    public ResponseEntity<?> handleException(RuntimeException e) {
-//        Map<String, String> responseParameters = new HashMap<>();
-//        responseParameters.put("Reason: ", e.getMessage());
-//        responseParameters.put("DateTime: ", LocalDateTime.now().toString());
-//
-//        return ResponseEntity.badRequest().body(responseParameters);
-//    }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ModelAndView handlerNotFoundException(Exception exception){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.getModel().put("exception",exception);
+        modelAndView.setViewName("notfound");
+        return modelAndView;
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleHibernateObjectValidation(MethodArgumentNotValidException exception) {

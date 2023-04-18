@@ -22,5 +22,4 @@ public class MainController {
         return new ModelAndView("main");
     }
 
-
 }
