@@ -1,6 +1,7 @@
 package com.example.instacookjava.controllers.integrationTests;
+import com.example.instacookjava.controllers.CollectionController;
 import com.example.instacookjava.controllers.RecipeController;
-import com.example.instacookjava.services.RecipeService;
+import com.example.instacookjava.services.CollectionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,35 +18,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RecipeControllerIntegrationTest {
+public class CollectionControllerIntegrationTest {
 
     private MockMvc mockMvc;
 
     @MockBean
-    private RecipeService recipeService;
+    private CollectionService collectionService;
 
     @MockBean
     private Model model;
 
     @BeforeEach
     public void setup() {
-        mockMvc = MockMvcBuilders.standaloneSetup(new RecipeController(recipeService), model).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new CollectionController(collectionService), model).build();
     }
 
     @Test
     @WithMockUser(username = "claudia.ursu@yahoo.com", password = "parola123", roles = "ADMIN")
     public void showByIdMvc() throws Exception {
 
-        mockMvc.perform(get("/recipes"))
+        mockMvc.perform(get("/collections"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("recipes/recipeList"));
+                .andExpect(view().name("collections/collectionList"));
     }
 
     @Test
     @WithMockUser(username = "claudia.ursu@yahoo.com", password = "parola123", roles = "GUEST")
     public void showByIdNotFound() throws Exception {
 
-        mockMvc.perform(get("/recipes/{id}", "17"))
+        mockMvc.perform(get("/collections/{id}", "17"))
                 .andExpect(status().isNotFound())
                 .andExpect(view().name("fragments/notFound"));
     }

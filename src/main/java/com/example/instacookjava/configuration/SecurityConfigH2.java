@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -19,7 +21,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 @Profile("h2")
-public class SecurityConfigH2{
+public class SecurityConfigH2 extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -53,6 +55,20 @@ public class SecurityConfigH2{
 //                .httpBasic(withDefaults())
 //                .build();
 //    }
+
+
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
+//        http.authorizeRequests().antMatchers("/h2-console/**").permitAll();
+//    }
+
+
+    protected void configure(HttpSecurity http) throws Exception{
+        http
+                .authorizeRequests()
+                .antMatchers("/h2-console/**").permitAll();
+    }
 
 }
 

@@ -67,7 +67,7 @@ public class InstaCookJavaApplication implements CommandLineRunner {
 
 
 		User u1 = new User("Ursu", "Claudia", "claudia.ursu@yahoo.com", passwordEncoder.encode("parola123"), "Romania", "0737526240");
-		User u2 = new User("Popescu", "Ana", "popescu.ana@yahoo.com",  passwordEncoder.encode("aaaa"), "Romania", "0737a26241");
+		User u2 = new User("Popescu", "Ana", "claudia.ursu2@yahoo.com",  passwordEncoder.encode("aaaa"), "Romania", "0737a26241");
 
 		u1.setAccountNotExpired(true);
 		u1.setEnabled(true);

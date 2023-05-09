@@ -1,6 +1,7 @@
 package com.example.instacookjava.services;
 import java.util.*;
 
+import com.example.instacookjava.exceptionHandling.ResourceNotFoundException;
 import com.example.instacookjava.models.Collection;
 import com.example.instacookjava.models.Comment;
 import com.example.instacookjava.models.Kitchen;
@@ -34,7 +35,11 @@ public class RecipeService {
     }
 
     public Recipe getRecipeById(Integer id) {
-        return recipeRepository.findById(id).orElse(null);
+        Recipe foundRecipe = recipeRepository.findById(id).orElse(null);
+        if(foundRecipe == null){
+            throw new ResourceNotFoundException("Recipe " + id + " not found");
+        }
+        return foundRecipe;
     }
 
     public Recipe createRecipe(Recipe recipe, int collectionId) {
