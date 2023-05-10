@@ -1,4 +1,5 @@
 package com.example.instacookjava.services;
+import com.example.instacookjava.exceptionHandling.ResourceNotFoundException;
 import com.example.instacookjava.models.Recipe;
 import com.example.instacookjava.models.User;
 import com.example.instacookjava.models.security.Authority;
@@ -48,6 +49,14 @@ public class UserService {
     public User updateUser(Integer id, User user){
         user.setUserId(id);
         return userRepository.save(user);
+    }
+
+    public User getUserById(Integer id) {
+        User foundUser = userRepository.findById(id).orElse(null);
+        if(foundUser == null){
+            throw new ResourceNotFoundException("User " + id + " not found");
+        }
+        return foundUser;
     }
 
     public User addReaction(Integer userId, Integer recipeId){

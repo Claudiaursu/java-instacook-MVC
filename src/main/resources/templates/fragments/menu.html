@@ -17,8 +17,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
         <a class="nav-link" th:href="@{'/collections'}"> <i class="fas fa-home mx-1"></i>  </a>
-        <a class="nav-link" th:href="@{'/recipes'}"> <i class="fas fa-user mx-1"></i>  </a>
-        <a class="nav-link" th:href="@{'/kitchens'}"> <i class="fas fa-user mx-1"></i>  </a>
+<!--        <div sec:authorize="isAuthenticated()" type="button" class="btn btn-info" >-->
+<!--            Logged in as: <span sec:authentication = "principal.firstName"></span>-->
+<!--            <a class="nav-link" th:href="@{'/users/' + ${#authentication.principal.userId}"> <i class="fas fa-user mx-1"></i>  </a>-->
+<!--        </div>-->
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
@@ -33,7 +35,7 @@
                     <a class="nav-link" th:href="@{'/kitchens'}">Kitchens</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" th:href="@{'/users'}">Users</a>
                 </li>
 
             </ul>
@@ -41,9 +43,9 @@
             <ul class="navbar-nav ml-auto">
                 <form  sec:authorize="isFullyAuthenticated()" align = "left" class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
                     <button sec:authorize="isAuthenticated()" class="btn btn-danger" type="submit">Logout</button>
-                    <div sec:authorize="isAuthenticated()" type="button" class="btn btn-info" >
-                        Logged in as: <span sec:authentication = "principal.email"></span>
-                    </div>
+<!--                    <div sec:authorize="isAuthenticated()" type="button" class="btn btn-info" >-->
+<!--                        Logged in as: <span sec:authentication = "principal.email"></span>-->
+<!--                    </div>-->
                 </form>
                 <li sec:authorize="isAnonymous()" class="nav-item mx-1">
                     <a class="nav-link btn btn-primary text-white" type="button" th:href="@{'/login'}" >Login</a>

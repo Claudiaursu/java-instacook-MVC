@@ -2,14 +2,17 @@ package com.example.instacookjava.controllers;
 import java.util.List;
 
 import com.example.instacookjava.models.Collection;
+import com.example.instacookjava.models.Kitchen;
 import com.example.instacookjava.models.Recipe;
 import com.example.instacookjava.models.User;
 import com.example.instacookjava.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -41,21 +44,38 @@ public class UserController {
     @GetMapping("/register")
     public String showRegisterForm(){ return "login/register"; }
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-    @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable Integer userId) {
-        userService.deleteUser(userId);
-    }
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
-        return ResponseEntity.ok().body(userService.updateUser(id, user));
+    @GetMapping("/{id}")
+    public String getById(@PathVariable Integer id, Model model){
+
+        User user = userService.getUserById(id);
+        model.addAttribute("user",
+                user);
+        return "login/userDetails";
     }
 
-    @PostMapping("/{userId}/reactions")
-    public ResponseEntity<User> addRecipeReaction(@PathVariable(value = "userId") Integer userId, @RequestParam Integer recipeId) {
-        return ResponseEntity.ok().body(userService.addReaction(userId, recipeId));
+    @RequestMapping("")
+    public ModelAndView recipes(){
+        ModelAndView modelAndView = new ModelAndView("login/usersList");
+        List<User> users = userService.getAllUsers();
+        modelAndView.addObject("users", users);
+        return modelAndView;
     }
+
+//    @GetMapping
+//    public List<User> getAllUsers() {
+//        return userService.getAllUsers();
+//    }
+//    @DeleteMapping("/{userId}")
+//    public void deleteUser(@PathVariable Integer userId) {
+//        userService.deleteUser(userId);
+//    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<User> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
+//        return ResponseEntity.ok().body(userService.updateUser(id, user));
+//    }
+//
+//    @PostMapping("/{userId}/reactions")
+//    public ResponseEntity<User> addRecipeReaction(@PathVariable(value = "userId") Integer userId, @RequestParam Integer recipeId) {
+//        return ResponseEntity.ok().body(userService.addReaction(userId, recipeId));
+//    }
 }
